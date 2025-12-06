@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Academic Pillars**: Does the plan align with the defined academic pillars (Cognitive Brain, Nervous System, Body Physics, Perception, Action)?
+- [ ] **Learning Mandate**: Does the plan support the student learning mandates (Interpret, Convert, Simulate, Execute, Communicate)?
+- [ ] **Platform Requirements**: Does the plan adhere to the specified core software and edge hardware requirements?
+- [ ] **Safety Charter**: Does the plan respect the safety charter (ROS Rep-201, Isaac teleop boundaries, no uncontrolled testing)?
+- [ ] **Governance**: Have the necessary steps for technical validation, curriculum alignment, and safety review been considered for any proposed module updates?
 
 ## Project Structure
 

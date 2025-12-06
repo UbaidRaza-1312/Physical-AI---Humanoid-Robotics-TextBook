@@ -1,30 +1,30 @@
-<!--
-SYNC IMPACT REPORT
+---
+id: 2
+title: Revise Project Constitution to v2.0.0
+stage: constitution
+date: 2025-12-05
+surface: agent
+model: gemini
+feature: none
+branch: main
+user: User
+command: /sp.constitution
+labels: [constitution, governance]
+links:
+  spec: null
+  ticket: null
+  adr: null
+  pr: null
+files:
+  - .specify/memory/constitution.md
+  - .specify/templates/plan-template.md
+tests:
+  []
+---
 
-- Version Change: 1.0.0 -> 2.0.0
-- Rationale: Complete rewrite of the constitution to focus on the academic and technical framework for Physical AI and humanoid robotics. This is a major change in the project's governing principles.
-- Added Sections:
-  - 1. Purpose
-  - 2. Scope
-  - 3. Definition of Physical AI
-  - 4. Academic Pillars
-  - 5. Learning Mandate
-  - 6. Platform Requirements
-  - 7. Capstone Requirement
-  - 8. Safety Charter
-  - 9. Governance
-  - 10. Revision Cycle
-- Removed Sections:
-  - Core Principles (I. Accuracy, II. Clarity, III. Reproducibility, IV. Rigor)
-  - Publishing Platform
-  - Key Standards
-  - Constraints
-  - Success Criteria
-- Templates requiring updates:
-  - [x] .specify/memory/constitution.md (updated)
-  - [ ] .specify/templates/plan-template.md (verification pending)
-- Follow-up TODOs: None
--->
+## Prompt
+
+/sp.constitution
 # Constitution: Physical AI & Humanoid Robotics Program
 
 ## 1. Purpose
@@ -130,4 +130,32 @@ This constitution is revised annually based on:
 - Humanoid locomotion research maturity
 
 ---
-**Version**: 2.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-05
+
+## Response snapshot
+
+I have updated the project constitution to version 2.0.0 based on your input. This involved a complete rewrite of the document to focus on the academic and technical framework for Physical AI and humanoid robotics.
+
+I also updated the `plan-template.md` to align its 'Constitution Check' section with the new principles.
+
+Finally, I have created this Prompt History Record to document the changes.
+
+- **New Version**: 2.0.0 (major bump due to complete rewrite)
+- **Updated Files**:
+  - `.specify/memory/constitution.md`
+  - `.specify/templates/plan-template.md`
+- **Suggested Commit Message**: `docs(constitution): amend constitution to v2.0.0 and update templates`
+
+## Outcome
+
+- ✅ Impact: {{OUTCOME_IMPACT}}
+- 🧪 Tests: {{TESTS_SUMMARY}}
+- 📁 Files: {{FILES_SUMMARY}}
+- 🔁 Next prompts: {{NEXT_PROMPTS}}
+- 🧠 Reflection: {{REFLECTION_NOTE}}
+
+## Evaluation notes (flywheel)
+
+- Failure modes observed: {{FAILURE_MODES}}
+- Graders run and results (PASS/FAIL): {{GRADER_RESULTS}}
+- Prompt variant (if applicable): {{PROMPT_VARIANT_ID}}
+- Next experiment (smallest change to try): {{NEXT_EXPERIMENT}}

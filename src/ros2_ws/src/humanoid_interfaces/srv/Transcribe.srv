@@ -1,0 +1,7 @@
+# Service to transcribe audio to text
+uint8[] audio_data
+string encoding # e.g., "wav", "mp3"
+---
+string transcribed_text
+bool success
+string error_message

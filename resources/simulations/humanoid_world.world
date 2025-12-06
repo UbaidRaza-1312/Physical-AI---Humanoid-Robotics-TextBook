@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="humanoid_simple_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Simple Humanoid Robot -->
+    <model name="simple_humanoid">
+      <pose>0 0 0.5 0 0 0</pose> <!-- Initial pose of the robot -->
+      <static>false</static> <!-- Robot can move -->
+      <link name="base_link">
+        <visual>
+          <geometry><box><size>0.1 0.1 0.1</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Orange</name></script></material>
+        </visual>
+        <collision>
+          <geometry><box><size>0.1 0.1 0.1</size></box></geometry>
+        </collision>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia><ixx>0.01</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.01</iyy><iyz>0</iyz><izz>0.01</izz></inertia>
+        </inertial>
+      </link>
+
+      <!-- Torso -->
+      <link name="torso">
+        <visual>
+          <geometry><box><size>0.2 0.3 0.5</size></box></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Grey</name></script></material>
+        </visual>
+        <collision>
+          <geometry><box><size>0.2 0.3 0.5</size></box></geometry>
+        </collision>
+        <inertial>
+          <mass>5.0</mass>
+          <inertia><ixx>0.5</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.5</iyy><iyz>0</iyz><izz>0.5</izz></inertia>
+        </inertial>
+      </link>
+      <joint name="base_to_torso" type="fixed">
+        <parent>base_link</parent>
+        <child>torso</child>
+        <pose>0 0 0.25 0 0 0</pose>
+      </joint>
+
+      <!-- Head -->
+      <link name="head">
+        <visual>
+          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/White</name></script></material>
+        </visual>
+        <collision>
+          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+        </collision>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia><ixx>0.01</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.01</iyy><iyz>0</iyz><izz>0.01</izz></inertia>
+        </inertial>
+      </link>
+      <joint name="torso_to_head" type="revolute">
+        <parent>torso</parent>
+        <child>head</child>
+        <pose>0 0 0.3 0 0 0</pose>
+        <axis><xyz>0 0 1</xyz></axis>
+        <limit lower="-1.57" upper="1.57" velocity="100" effort="100"/></joint>
+
+      <!-- Placeholder for right arm - expand as needed -->
+      <link name="right_upper_arm">
+        <visual>
+          <geometry><cylinder><radius>0.04</radius><length>0.3</length></cylinder></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Grey</name></script></material>
+        </visual>
+        <collision>
+          <geometry><cylinder><radius>0.04</radius><length>0.3</length></cylinder></geometry>
+        </collision>
+        <inertial>
+          <mass>0.5</mass>
+          <inertia><ixx>0.005</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.005</iyy><iyz>0</iyz><izz>0.005</izz></inertia>
+        </inertial>
+      </link>
+      <joint name="torso_to_right_upper_arm" type="revolute">
+        <parent>torso</parent>
+        <child>right_upper_arm</child>
+        <pose>0 -0.2 0.2 0 0 0</pose>
+        <axis><xyz>0 1 0</xyz></axis>
+        <limit lower="-1.57" upper="1.57" velocity="100" effort="100"/>
+      </joint>
+
+      <!-- Placeholder for left arm - expand as needed -->
+      <link name="left_upper_arm">
+        <visual>
+          <geometry><cylinder><radius>0.04</radius><length>0.3</length></cylinder></geometry>
+          <material><script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Grey</name></script></material>
+        </visual>
+        <collision>
+          <geometry><cylinder><radius>0.04</radius><length>0.3</length></cylinder></geometry>
+        </collision>
+        <inertial>
+          <mass>0.5</mass>
+          <inertia><ixx>0.005</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.005</iyy><iyz>0</iyz><izz>0.005</izz></inertia>
+        </inertial>
+      </link>
+      <joint name="torso_to_left_upper_arm" type="revolute">
+        <parent>torso</parent>
+        <child>left_upper_arm</child>
+        <pose>0 0.2 0.2 0 0 0</pose>
+        <axis><xyz>0 1 0</xyz></axis>
+        <limit lower="-1.57" upper="1.57" velocity="100" effort="100"/>
+      </joint>
+    </model>
+  </world>
+</sdf>
