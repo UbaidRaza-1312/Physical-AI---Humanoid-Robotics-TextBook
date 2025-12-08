@@ -95,7 +95,7 @@
   background-color: var(--ifm-background-surface-color);
   padding: 2.5rem; /* Adjusted padding */
   border-radius: 16px;
-  border: 1px solid var(--ifm-color-primary-light); /* Subtle border reintroduced */
+  border: 2px solid var(--ifm-color-primary-dark); /* More distinct border */
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
   height: 100%;
