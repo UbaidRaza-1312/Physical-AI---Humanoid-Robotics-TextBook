@@ -89,19 +89,16 @@ const ModuleList: ModuleItem[] = [
 
 function Module({title, Svg, description, link}: ModuleItem) {
   return (
-    <div className={clsx('col col--3', styles.moduleCard)}> {/* col--3 for 4 modules */}
-      <div className="text--center">
-        <Svg className={styles.moduleSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-        <Link
-            className="button button--primary"
-            to={link}>
-            Learn More
-          </Link>
-      </div>
+    <div className={clsx('col col--3')}> {/* col--3 for 4 modules */}
+      <Link to={link} className={clsx(styles.moduleCard, styles.moduleCardLink)}>
+        <div className="text--center">
+          <Svg className={styles.moduleSvg} role="img" />
+        </div>
+        <div className="text--center padding-horiz--md">
+          <Heading as="h3">{title}</Heading>
+          <p>{description}</p>
+        </div>
+      </Link>
     </div>
   );
 }
@@ -142,7 +139,6 @@ export default function Home(): ReactNode {
       description="Explore the world of Physical AI and Humanoid Robotics.">
       <HomepageHeader />
       <main>
-        <HomepageFeatures /> {/* Keep features for now, can be moved later if needed */}
         <ModulesSection /> {/* New Modules Section */}
         <AboutSection /> {/* Moved About Section to the end of main */}
       </main>

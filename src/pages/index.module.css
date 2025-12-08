@@ -23,14 +23,23 @@
   font-size: 3.5rem; /* Larger title */
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--ifm-color-primary-darker); /* Use a darker primary color for the title */
+  color: #1a1a2e; /* Darker color for the title in light mode */
 }
 
 .heroSubtitle {
   font-size: 1.5rem;
   max-width: 800px;
   margin: 0 auto 2rem;
-  color: var(--ifm-text-color);
+  color: #4a4a4a; /* Darker color for the subtitle in light mode */
+}
+
+/* Dark mode overrides for hero text */
+[data-theme='dark'] .heroTitle {
+  color: var(--ifm-color-primary-light); /* Lighter primary color for dark mode title */
+}
+
+[data-theme='dark'] .heroSubtitle {
+  color: var(--ifm-text-color); /* Default text color for dark mode subtitle */
 }
 
 .buttons {
@@ -92,31 +101,40 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer; /* Indicate clickable */
 }
 
 .moduleCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-decoration: none; /* Remove underline on hover for the card itself */
+}
+
+/* Style for the Docusaurus Link wrapping the module card */
+.moduleCardLink {
+  color: inherit; /* Inherit text color from parent for default content */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.moduleCardLink:hover {
+  color: inherit; /* Ensure text color doesn't change on hover due to link default */
+  text-decoration: none; /* Ensure text decoration doesn't change on hover due to link default */
 }
 
 .moduleCard h3 {
   font-size: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  color: var(--ifm-text-color);
+  color: var(--ifm-text-color); /* Ensure heading color */
 }
 
 .moduleCard p {
   font-size: 1rem;
-  color: var(--ifm-text-color);
+  color: var(--ifm-text-color); /* Ensure paragraph color */
   flex-grow: 1; /* Allow description to take available space */
 }
 
-.moduleCard a.button {
-  margin-top: 1rem;
-  display: inline-block;
-  align-self: flex-start; /* Align button to start of flex item */
-}
+/* Removed .moduleCard a.button since the whole card is a link */
 
 .moduleSvg {
   width: 80px;
