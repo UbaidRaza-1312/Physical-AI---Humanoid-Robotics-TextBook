@@ -1,23 +1,63 @@
+
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0; /* Increase padding for more spacious hero */
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--ifm-color-primary-lightest) 0%, var(--ifm-background-color) 100%); /* Subtle gradient */
+  color: var(--ifm-text-color);
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 4rem 2rem;
   }
+}
+
+.heroTitle {
+  font-size: 3.5rem; /* Larger title */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary-darker); /* Use a darker primary color for the title */
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: var(--ifm-text-color);
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem; /* More space between buttons */
+  margin-top: 2rem;
+}
+
+/* About Section Styles */
+.aboutSection {
+  padding: 6rem 0;
+  background-color: var(--ifm-background-surface-color); /* Use surface color for contrast */
+  color: var(--ifm-text-color);
+  text-align: center;
+}
+
+.aboutSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary-dark);
+}
+
+.aboutSection p {
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
 }
