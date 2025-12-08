@@ -86,30 +86,30 @@
 
 .modulesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly wider cards */
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Revert to 280px for better fit */
+  gap: 1.5rem; /* Tighter gap */
+  margin-top: 3.5rem; /* Slightly more top margin */
 }
 
 .moduleCard {
   background-color: var(--ifm-background-surface-color);
-  padding: 3rem 2.5rem; /* Increased padding */
-  border-radius: 16px; /* Even softer corners */
-  border: 1px solid var(--ifm-background-color);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* More refined shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  padding: 2.2rem; /* Adjusted padding for visual balance */
+  border-radius: 10px; /* Refined border-radius */
+  border: 1px solid var(--ifm-color-primary-lightest); /* More noticeable border, but subtle */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04); /* Lighter, more subtle shadow */
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out; /* Faster, smoother transition */
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  text-align: center; /* Keep text centered for consistency */
+  text-align: center;
 }
 
 .moduleCard:hover {
-  transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
-  box-shadow: 0 16px 32px rgba(0,0,0,0.2); /* Stronger shadow on hover */
-  border-color: var(--ifm-color-primary);
+  transform: translateY(-5px) scale(1.01); /* Subtle lift and slight scale */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Clearer shadow on hover */
+  border-color: var(--ifm-color-primary); /* Primary color highlight on border */
   text-decoration: none;
 }
 
@@ -130,23 +130,23 @@
 }
 
 .moduleCard h3 {
-  font-size: 1.7rem; /* Slightly larger title */
-  font-weight: 700; /* Bolder title */
-  margin-top: 1.5rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.55rem; /* Fine-tuned title size */
+  font-weight: 600; /* Adjusted font weight */
+  margin-top: 1.2rem;
+  margin-bottom: 0.7rem;
   color: var(--ifm-text-color);
 }
 
 .moduleCard p {
-  font-size: 1.1rem; /* Slightly larger description */
+  font-size: 1rem; /* Fine-tuned description size */
   color: var(--ifm-text-color);
   flex-grow: 1;
-  line-height: 1.7; /* Slightly more line height */
+  line-height: 1.55; /* Fine-tuned line height */
 }
 
 .moduleSvg {
-  width: 100px; /* Even larger SVG */
-  height: 100px;
+  width: 85px; /* Fine-tuned SVG size */
+  height: 85px;
   color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem; /* More space below SVG */
+  margin-bottom: 1.3rem; /* Fine-tuned space below SVG */
 }
