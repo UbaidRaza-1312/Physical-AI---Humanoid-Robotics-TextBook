@@ -5,11 +5,11 @@
  */
 
 .heroBanner {
-  padding: 6rem 0; /* Increase padding for more spacious hero */
+  padding: 8rem 0; /* Increased padding for more spacious hero */
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-color: var(--ifm-color-primary-lightest); /* Solid lighter primary color for better text contrast */
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark) 0%, var(--ifm-background-color) 100%); /* Gradient from darker primary to background */
   color: var(--ifm-text-color);
 }
 
@@ -20,14 +20,14 @@
 }
 
 .heroTitle {
-  font-size: 3.5rem; /* Larger title */
+  font-size: 4rem; /* Even larger title for impact */
   font-weight: 700;
   margin-bottom: 1rem;
   color: #000000; /* Pure black for maximum visibility in light mode */
 }
 
 .heroSubtitle {
-  font-size: 1.5rem;
+  font-size: 1.7rem; /* Larger subtitle for impact */
   max-width: 800px;
   margin: 0 auto 2rem;
   color: #333333; /* Darker color for the subtitle in light mode */
@@ -86,18 +86,18 @@
 
 .modulesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Revert to 280px for better fit */
-  gap: 1.5rem; /* Tighter gap */
-  margin-top: 3.5rem; /* Slightly more top margin */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
 }
 
 .moduleCard {
   background-color: var(--ifm-background-surface-color);
-  padding: 2.5rem; /* Adjusted padding after image removal */
-  border-radius: 10px;
-  border: 2px solid var(--ifm-color-primary-dark); /* More prominent border */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  padding: 3rem; /* Increased padding */
+  border-radius: 16px; /* Softer corners */
+  border: none; /* Removed border */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* More prominent shadow */
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -107,10 +107,38 @@
 }
 
 .moduleCard:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  border-color: var(--ifm-color-primary-dark); /* Darker primary color on hover */
+  transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25); /* Stronger shadow on hover */
   text-decoration: none;
 }
 
-/* Removed .moduleSvg styling */
+/* Style for the Docusaurus Link wrapping the module card */
+.moduleCardLink {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.moduleCardLink:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.moduleCard h3 {
+  font-size: 1.6rem; /* Slightly larger title */
+  font-weight: 700; /* Bolder title */
+  margin-top: 1.2rem;
+  margin-bottom: 0.7rem;
+  color: var(--ifm-text-color); /* Ensure theme-appropriate text color */
+}
+
+.moduleCard p {
+  font-size: 1.05rem; /* Slightly larger description */
+  color: var(--ifm-text-color); /* Ensure theme-appropriate text color */
+  flex-grow: 1;
+  line-height: 1.6; /* Adjusted line height */
+}
