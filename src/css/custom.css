@@ -6,114 +6,33 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  /* Light mode colors */
-  --ifm-color-primary: #5a5aed; /* A vibrant purple-blue */
-  --ifm-color-primary-dark: #4d4dc2;
-  --ifm-color-primary-darker: #4646a8;
-  --ifm-color-primary-darkest: #3a3a8a;
-  --ifm-color-primary-light: #6a6aee;
-  --ifm-color-primary-lighter: #7b7bee;
-  --ifm-color-primary-lightest: #9292f0;
-
-  --ifm-background-color: #ffffff; /* White background for light theme */
-  --ifm-background-surface-color: #f8f8fa; /* Light grey for cards/sections */
-  --ifm-text-color: #333333; /* Dark text for readability */
-  --ifm-link-color: var(--ifm-color-primary);
-
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: 'Inter', sans-serif;
 }
 
-/* Dark mode colors */
+/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #8a8afe; /* Lighter vibrant purple-blue for dark mode */
-  --ifm-color-primary-dark: #7b7beb;
-  --ifm-color-primary-darker: #6d6de0;
-  --ifm-color-primary-darkest: #5959c2;
-  --ifm-color-primary-light: #9a9af0;
-  --ifm-color-primary-lighter: #a9a9f2;
-  --ifm-color-primary-lightest: #c1c1f5;
-
-  --ifm-background-color: #1a1a2e; /* Dark background */
-  --ifm-background-surface-color: #2e2e4a; /* Slightly lighter dark for cards/sections */
-  --ifm-text-color: #e0e0e0; /* Light text for readability */
-  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-
-body {
-  background-color: var(--ifm-background-color);
-  color: var(--ifm-text-color);
-  font-family: var(--ifm-font-family-base);
-}
-
-.hero {
-  background-color: var(--ifm-background-color);
-  color: var(--ifm-text-color);
-  padding: 4rem 0; /* Add more padding for a spacious feel */
-}
-
-.button--primary {
-  background-color: var(--ifm-color-primary);
-  color: #ffffff;
-  border: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 6px; /* Slightly rounded buttons */
-}
-
-.button--primary:hover {
-  background-color: var(--ifm-color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.button--secondary {
-  background-color: var(--ifm-background-surface-color);
-  color: var(--ifm-text-color);
-  border: 1px solid var(--ifm-color-primary-lightest); /* Use a lighter primary color for border */
-  transition: all 0.3s ease;
-  border-radius: 6px; /* Slightly rounded buttons */
-}
-
-.button--secondary:hover {
-  background-color: var(--ifm-color-primary-lightest);
-  color: var(--ifm-text-color);
-  border-color: var(--ifm-color-primary-lightest);
-}
-
-.card {
-  background-color: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-background-surface-color); /* Match background for a cleaner look */
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Subtle shadow for depth */
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  border-color: var(--ifm-color-primary);
-}
-
-/* Navbar Ubaid Raza styling */
-.navbar-ubaid-raza {
-  color: var(--ifm-navbar-link-color); /* Inherit from navbar links */
-  font-weight: 600; /* Make it slightly bolder */
-  padding: 0.5rem 0.75rem; /* Match Docusaurus nav item padding */
-  transition: color 0.3s ease;
-}
-
-/* Ensure it's clickable like a nav item if desired, though current config is just text */
-.navbar-ubaid-raza:hover {
-  color: var(--ifm-navbar-link-hover-color);
-  text-decoration: none;
-}
-
-/* Hide the search bar */
-.navbar__item.navbar__item--search,
-.navbar__search,
-.DocSearch.DocSearch-Button {
+/* Hide the search bar, as configuration failed to remove it completely */
+.navbar__item.navbar__item--search, /* For @easyops-cn/docusaurus-search-local */
+.navbar__search,                   /* General search bar container */
+.DocSearch.DocSearch-Button        /* For Algolia DocSearch */
+{
   display: none !important;
 }
