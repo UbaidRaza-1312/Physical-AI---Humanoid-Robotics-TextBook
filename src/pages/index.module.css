@@ -86,18 +86,18 @@
 
 .modulesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly smaller cards */
+  gap: 2rem; /* Increased gap */
   margin-top: 3.5rem;
 }
 
 .moduleCard {
   background-color: var(--ifm-background-surface-color);
-  padding: 3rem; /* Increased padding */
-  border-radius: 16px; /* Softer corners */
-  border: none; /* Removed border */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* More prominent shadow */
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  padding: 2.5rem; /* Adjusted padding */
+  border-radius: 16px;
+  border: 1px solid var(--ifm-color-primary-light); /* Subtle border reintroduced */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -107,8 +107,9 @@
 }
 
 .moduleCard:hover {
-  transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
-  box-shadow: 0 18px 40px rgba(0,0,0,0.25); /* Stronger shadow on hover */
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  border-color: var(--ifm-color-primary); /* Highlight border on hover */
   text-decoration: none;
 }
 
@@ -129,16 +130,16 @@
 }
 
 .moduleCard h3 {
-  font-size: 1.6rem; /* Slightly larger title */
-  font-weight: 700; /* Bolder title */
+  font-size: 1.5rem; /* Adjusted title size */
+  font-weight: 700;
   margin-top: 1.2rem;
   margin-bottom: 0.7rem;
-  color: var(--ifm-text-color); /* Ensure theme-appropriate text color */
+  color: var(--ifm-text-color);
 }
 
 .moduleCard p {
-  font-size: 1.05rem; /* Slightly larger description */
-  color: var(--ifm-text-color); /* Ensure theme-appropriate text color */
+  font-size: 1rem; /* Adjusted description size */
+  color: var(--ifm-text-color);
   flex-grow: 1;
-  line-height: 1.6; /* Adjusted line height */
+  line-height: 1.6;
 }
