@@ -1,23 +1,146 @@
+
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 8rem 0; /* Increased padding for more spacious hero */
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark) 0%, var(--ifm-background-color) 100%); /* Gradient from darker primary to background */
+  color: var(--ifm-text-color);
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 4rem 2rem;
   }
+}
+
+.heroTitle {
+  font-size: 4rem; /* Even larger title for impact */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000000; /* Pure black for maximum visibility in light mode */
+}
+
+.heroSubtitle {
+  font-size: 1.7rem; /* Larger subtitle for impact */
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #333333; /* Darker color for the subtitle in light mode */
+}
+
+/* Dark mode overrides for hero text */
+[data-theme='dark'] .heroTitle {
+  color: var(--ifm-color-primary-light); /* Lighter primary color for dark mode title */
+}
+
+[data-theme='dark'] .heroSubtitle {
+  color: var(--ifm-text-color); /* Default text color for dark mode subtitle */
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem; /* More space between buttons */
+  margin-top: 2rem;
+}
+
+/* About Section Styles */
+.aboutSection {
+  padding: 6rem 0;
+  background-color: var(--ifm-background-surface-color); /* Use surface color for contrast */
+  color: var(--ifm-text-color);
+  text-align: center;
+}
+
+.aboutSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary-dark);
+}
+
+.aboutSection p {
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Modules Section Styles */
+.modulesSection {
+  padding: 6rem 0;
+  text-align: center;
+  background-color: var(--ifm-background-color);
+}
+
+.modulesSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary-dark);
+}
+
+.modulesGrid {
+  display: grid;
+  /* Responsive grid: 1 column on small, 2 on medium, 3 on large */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; /* Consistent gap between cards */
+  margin-top: 3.5rem;
+  justify-items: center; /* Center cards in the grid */
+}
+
+.moduleCard {
+  background-color: var(--ifm-background-surface-color);
+  padding: 2rem; /* Slightly reduced padding for a tighter look */
+  border-radius: 12px; /* Slightly less rounded corners */
+  border: 1px solid var(--ifm-color-emphasis-200); /* Lighter, more subtle border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the start */
+  align-items: center;
+  text-align: center;
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit color from parent */
+  width: 100%; /* Ensure card takes full width of its grid cell */
+  max-width: 350px; /* Optional: limit max width of cards for very large screens */
+}
+
+.moduleCard:hover {
+  transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+  border-color: var(--ifm-color-primary); /* Highlight border on hover */
+  text-decoration: none; /* Keep underline removed on hover */
+}
+
+.moduleCard h3 {
+  font-size: 1.6rem; /* Slightly larger title size */
+  font-weight: 600; /* Medium bold for titles */
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--ifm-color-primary); /* Use primary color for titles */
+}
+
+.moduleCard p {
+  font-size: 1rem;
+  color: var(--ifm-font-color-secondary); /* Use secondary font color for description */
+  flex-grow: 1;
+  line-height: 1.7;
+}
+
+/* Ensure link wrapping works correctly */
+.moduleCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.moduleCardLink:hover {
+  text-decoration: none;
+  color: inherit;
 }
