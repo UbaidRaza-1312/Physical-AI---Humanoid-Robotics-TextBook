@@ -26,11 +26,6 @@ function HomepageHeader() {
             to="/docs/intro">
             Start Your Journey
           </Link>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/category/module-1-ros2">
-            Explore Modules
-          </Link>
         </div>
       </div>
     </header>
@@ -82,12 +77,12 @@ const ModuleList: ModuleItem[] = [
   },
 ];
 
-function Module({title, description, link}: ModuleItem) {
+function Module({title, description, link, idx}: ModuleItem & {idx: number}) {
   return (
-    <div className={clsx('col col--3')}> {/* col--3 for 4 modules */}
+    <div> {/* Responsive columns for modules */}
       <Link to={link} className={clsx(styles.moduleCard, styles.moduleCardLink)}>
         <div className="text--center padding-horiz--md">
-          <Heading as="h3">{title}</Heading>
+          <Heading as="h3">Chapter {idx + 1}: {title}</Heading>
           <p>{description}</p>
         </div>
       </Link>
@@ -100,9 +95,9 @@ function ModulesSection() {
     <section className={styles.modulesSection}>
       <div className="container">
         <Heading as="h2">Explore Our Modules</Heading>
-        <div className={clsx('row', styles.modulesGrid)}>
+        <div className={styles.modulesGrid}>
           {ModuleList.map((props, idx) => (
-            <Module key={idx} {...props} />
+            <Module key={idx} idx={idx} {...props} />
           ))}
         </div>
       </div>
