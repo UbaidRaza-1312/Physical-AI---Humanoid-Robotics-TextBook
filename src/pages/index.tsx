@@ -39,7 +39,6 @@ function HomepageHeader() {
 
 type ModuleItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
   link: string;
 };
@@ -47,7 +46,6 @@ type ModuleItem = {
 const ModuleList: ModuleItem[] = [
   {
     title: 'ROS2 Fundamentals',
-    Svg: require('@site/static/img/module1.svg').default,
     description: (
       <>
         Dive into the Robot Operating System 2 (ROS2) with core concepts, tools, and best practices for robotic development.
@@ -57,7 +55,6 @@ const ModuleList: ModuleItem[] = [
   },
   {
     title: 'Digital Twin Simulations',
-    Svg: require('@site/static/img/module2.svg').default,
     description: (
       <>
         Explore the power of digital twins and simulation environments for testing and validating AI and robotics systems.
@@ -67,7 +64,6 @@ const ModuleList: ModuleItem[] = [
   },
   {
     title: 'NVIDIA Isaac Integration',
-    Svg: require('@site/static/img/module3.svg').default,
     description: (
       <>
         Learn to integrate NVIDIA Isaac Sim for advanced robotics simulation, perception, and AI model training.
@@ -77,7 +73,6 @@ const ModuleList: ModuleItem[] = [
   },
   {
     title: 'VLA Capstone Project',
-    Svg: require('@site/static/img/module4.svg').default,
     description: (
       <>
         Apply your knowledge in a comprehensive capstone project, integrating Vision-Language-Action models into a physical system.
@@ -87,13 +82,10 @@ const ModuleList: ModuleItem[] = [
   },
 ];
 
-function Module({title, Svg, description, link}: ModuleItem) {
+function Module({title, description, link}: ModuleItem) {
   return (
     <div className={clsx('col col--3')}> {/* col--3 for 4 modules */}
       <Link to={link} className={clsx(styles.moduleCard, styles.moduleCardLink)}>
-        <div className="text--center">
-          <Svg className={styles.moduleSvg} role="img" />
-        </div>
         <div className="text--center padding-horiz--md">
           <Heading as="h3">{title}</Heading>
           <p>{description}</p>
