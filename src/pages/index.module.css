@@ -86,30 +86,30 @@
 
 .modulesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem; /* Increased gap for better spacing */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly wider cards */
+  gap: 2.5rem;
   margin-top: 3rem;
 }
 
 .moduleCard {
   background-color: var(--ifm-background-surface-color);
-  padding: 2.5rem; /* Increased padding */
-  border-radius: 12px; /* Softer corners */
-  border: 1px solid var(--ifm-background-color); /* Subtle border */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* More refined shadow */
+  padding: 3rem 2.5rem; /* Increased padding */
+  border-radius: 16px; /* Even softer corners */
+  border: 1px solid var(--ifm-background-color);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* More refined shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to start */
-  align-items: center; /* Center horizontally */
-  text-align: center; /* Center text */
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center; /* Keep text centered for consistency */
 }
 
 .moduleCard:hover {
-  transform: translateY(-8px); /* More pronounced lift on hover */
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
-  border-color: var(--ifm-color-primary); /* Highlight border on hover */
+  transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 16px 32px rgba(0,0,0,0.2); /* Stronger shadow on hover */
+  border-color: var(--ifm-color-primary);
   text-decoration: none;
 }
 
@@ -117,11 +117,11 @@
 .moduleCardLink {
   color: inherit;
   text-decoration: none;
-  display: flex; /* Make the link itself a flex container */
+  display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Ensure link takes full width of the card */
-  height: 100%; /* Ensure link takes full height of the card */
+  width: 100%;
+  height: 100%;
 }
 
 .moduleCardLink:hover {
@@ -130,24 +130,23 @@
 }
 
 .moduleCard h3 {
-  font-size: 1.6rem; /* Slightly larger title */
-  margin-top: 1.2rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.7rem; /* Slightly larger title */
+  font-weight: 700; /* Bolder title */
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
   color: var(--ifm-text-color);
 }
 
 .moduleCard p {
-  font-size: 1.05rem; /* Slightly larger description */
+  font-size: 1.1rem; /* Slightly larger description */
   color: var(--ifm-text-color);
   flex-grow: 1;
-  line-height: 1.6;
+  line-height: 1.7; /* Slightly more line height */
 }
 
-/* Removed .moduleCard a.button since the whole card is a link */
-
 .moduleSvg {
-  width: 90px; /* Slightly larger SVG */
-  height: 90px;
+  width: 100px; /* Even larger SVG */
+  height: 100px;
   color: var(--ifm-color-primary);
-  margin-bottom: 1rem; /* Space between SVG and title */
+  margin-bottom: 1.5rem; /* More space below SVG */
 }
