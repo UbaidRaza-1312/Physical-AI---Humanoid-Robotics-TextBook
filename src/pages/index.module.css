@@ -87,57 +87,67 @@
 .modulesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem; /* Increased gap for better spacing */
   margin-top: 3rem;
 }
 
 .moduleCard {
   background-color: var(--ifm-background-surface-color);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%; /* Ensure cards in a row have same height */
+  padding: 2.5rem; /* Increased padding */
+  border-radius: 12px; /* Softer corners */
+  border: 1px solid var(--ifm-background-color); /* Subtle border */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* More refined shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer; /* Indicate clickable */
+  justify-content: flex-start; /* Align content to start */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center text */
 }
 
 .moduleCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-decoration: none; /* Remove underline on hover for the card itself */
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+  border-color: var(--ifm-color-primary); /* Highlight border on hover */
+  text-decoration: none;
 }
 
 /* Style for the Docusaurus Link wrapping the module card */
 .moduleCardLink {
-  color: inherit; /* Inherit text color from parent for default content */
-  text-decoration: none; /* Remove underline from the link */
+  color: inherit;
+  text-decoration: none;
+  display: flex; /* Make the link itself a flex container */
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Ensure link takes full width of the card */
+  height: 100%; /* Ensure link takes full height of the card */
 }
 
 .moduleCardLink:hover {
-  color: inherit; /* Ensure text color doesn't change on hover due to link default */
-  text-decoration: none; /* Ensure text decoration doesn't change on hover due to link default */
+  color: inherit;
+  text-decoration: none;
 }
 
 .moduleCard h3 {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  color: var(--ifm-text-color); /* Ensure heading color */
+  font-size: 1.6rem; /* Slightly larger title */
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--ifm-text-color);
 }
 
 .moduleCard p {
-  font-size: 1rem;
-  color: var(--ifm-text-color); /* Ensure paragraph color */
-  flex-grow: 1; /* Allow description to take available space */
+  font-size: 1.05rem; /* Slightly larger description */
+  color: var(--ifm-text-color);
+  flex-grow: 1;
+  line-height: 1.6;
 }
 
 /* Removed .moduleCard a.button since the whole card is a link */
 
 .moduleSvg {
-  width: 80px;
-  height: 80px;
-  color: var(--ifm-color-primary); /* Use primary color for SVG icon */
+  width: 90px; /* Slightly larger SVG */
+  height: 90px;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem; /* Space between SVG and title */
 }
