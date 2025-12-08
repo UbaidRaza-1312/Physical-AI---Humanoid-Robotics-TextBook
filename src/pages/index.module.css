@@ -61,3 +61,65 @@
   margin: 0 auto;
   line-height: 1.8;
 }
+
+/* Modules Section Styles */
+.modulesSection {
+  padding: 6rem 0;
+  text-align: center;
+  background-color: var(--ifm-background-color);
+}
+
+.modulesSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary-dark);
+}
+
+.modulesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.moduleCard {
+  background-color: var(--ifm-background-surface-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Ensure cards in a row have same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.moduleCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.moduleCard h3 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-text-color);
+}
+
+.moduleCard p {
+  font-size: 1rem;
+  color: var(--ifm-text-color);
+  flex-grow: 1; /* Allow description to take available space */
+}
+
+.moduleCard a.button {
+  margin-top: 1rem;
+  display: inline-block;
+  align-self: flex-start; /* Align button to start of flex item */
+}
+
+.moduleSvg {
+  width: 80px;
+  height: 80px;
+  color: var(--ifm-color-primary); /* Use primary color for SVG icon */
+}
