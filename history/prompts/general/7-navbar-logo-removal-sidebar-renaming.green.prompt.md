@@ -1,6 +1,6 @@
 ---
 id: 7
-title: Navbar Logo Removal & Sidebar Module to Chapter Renaming
+title: Navbar Logo Removal & Sidebar Chapter to Module Renaming
 stage: green
 date: 2025-12-05
 surface: agent
@@ -8,7 +8,7 @@ model: gemini
 feature: none
 branch: [GIT_BRANCH]
 user: User
-command: no Physical AI Book. A textbook by Ubaid Raza add bebore the dino emoji and Physical AI Book(add robot emoji)[break line and start new line] A textbook by Ubaid Raza and this is not button this like a text that wirte in navbar after this replace all module into chatpter
+command: no Physical AI Book. A textbook by Ubaid Raza add bebore the dino emoji and Physical AI Book(add robot emoji)[break line and start new line] A textbook by Ubaid Raza and this is not button this like a text that wirte in navbar after this replace all chapter into module
 labels: [ui, content, docusaurus]
 links:
   spec: null
@@ -24,14 +24,14 @@ tests:
 
 ## Prompt
 
-no Physical AI Book. A textbook by Ubaid Raza add bebore the dino emoji and Physical AI Book(add robot emoji)[break line and start new line] A textbook by Ubaid Raza and this is not button this like a text that wirte in navbar after this replace all module into chatpter
+no Physical AI Book. A textbook by Ubaid Raza add bebore the dino emoji and Physical AI Book(add robot emoji)[break line and start new line] A textbook by Ubaid Raza and this is not button this like a text that wirte in navbar after this replace all chapter into module
 
 ## Response snapshot
 
 I have completed the requested UI and content adjustments for the Docusaurus website.
 
 - Removed the `logo` entry from the `navbar` configuration in `docusaurus.config.ts`, making the `navbar.title` the sole prominent element on the left.
-- Replaced all instances of "Module" with "Chapter" in the `sidebars.ts` file.
+- Replaced all instances of "Chapter" with "Module" in the `sidebars.ts` file.
 
 These changes further refine the website's presentation and terminology as requested.
 

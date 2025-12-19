@@ -32,7 +32,7 @@ tests:
 /sp.plan
 
 Title:
-Physical AI & Humanoid Robotics — Master Academic Build Plan + Module Chapters
+Physical AI & Humanoid Robotics — Master Academic Build Plan + Modules
 
 Primary Goal:
 A complete textbook + simulation robotics lab + humanoid systems hackathon, with academically structured modules under defined modules.
@@ -114,7 +114,7 @@ Modules:
 12. Ethical Deployment in Physical Environments
 
 Week 10:
-- Full chapter layout with objectives, diagrams, labs
+- Full module layout with objectives, diagrams, labs
 
 Week 11:
 - Textbook completion:

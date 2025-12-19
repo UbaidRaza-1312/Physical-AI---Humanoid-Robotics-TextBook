@@ -1,133 +1,154 @@
+import requests
+import xml.etree.ElementTree as ET
+import trafilatura
+from qdrant_client import QdrantClient
+from qdrant_client.models import VectorParams, Distance, PointStruct
+import cohere
+
+# -------------------------------------
+# CONFIG
+# -------------------------------------
+# Your Deployment Link:
+SITEMAP_URL = "https://physical-ai-humanoid-robotics-text.vercel.app/sitemap.xml"
+COLLECTION_NAME = "humanoid_ai_book"
+
 import os
-import logging
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from qdrant_client import QdrantClient, models
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
 
-load_dotenv() # Load environment variables from .env file
+load_dotenv()
 
-app = FastAPI()
+cohere_api_key = os.getenv("COHERE_API_KEY")
+qdrant_url = os.getenv("QDRANT_URL")
+qdrant_api_key = os.getenv("QDRANT_API_KEY")
 
-# Enable CORS for all origins
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+cohere_client = cohere.Client(cohere_api_key)
+EMBED_MODEL = "embed-english-v3.0"
+
+# Connect to Qdrant Cloud
+qdrant = QdrantClient(
+    url=qdrant_url,
+    api_key=qdrant_api_key
 )
 
-# Qdrant configuration
-QDRANT_URL = os.getenv("QDRANT_URL")
-QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-QDRANT_COLLECTION_NAME = "hummanoid_ai_book"
+# -------------------------------------
+# Step 1 — Extract URLs from sitemap
+# -------------------------------------
+def get_all_urls(sitemap_url):
+    xml = requests.get(sitemap_url).text
+    root = ET.fromstring(xml)
 
-# Google GenAI configuration
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    raise ValueError("GEMINI_API_KEY environment variable not set.")
-elif not QDRANT_API_KEY:
-    raise ValueError("QDRANT_API_KEY environment variable not set.")
-elif not QDRANT_URL:
-    raise ValueError("QDRANT_URL environment variable not set.")
+    urls = []
+    for child in root:
+        loc_tag = child.find("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
+        if loc_tag is not None:
+            urls.append(loc_tag.text)
 
-EMBEDDING_MODEL = "text-embedding-004"
-GENERATION_MODEL = "gemini-2.5-flash"
+    print("\nFOUND URLS:")
+    for u in urls:
+        print(" -", u)
 
-# Initialize Qdrant Client
-qdrant_client = QdrantClient(
-    url=QDRANT_URL,
-    api_key=QDRANT_API_KEY,
-)
+    return urls
 
-# Initialize Embedding Model
-embeddings_model = GoogleGenerativeAIEmbeddings(
-    model=EMBEDDING_MODEL,
-    google_api_key=GEMINI_API_KEY
-)
 
-# Initialize LLM for generation
-llm = ChatGoogleGenerativeAI(
-    model=GENERATION_MODEL,
-    google_api_key=GEMINI_API_KEY
-)
+# -------------------------------------
+# Step 2 — Download page + extract text
+# -------------------------------------
+def extract_text_from_url(url):
+    html = requests.get(url).text
+    text = trafilatura.extract(html)
 
-class ChatRequest(BaseModel):
-    query: str
+    if not text:
+        print("[WARNING] No text extracted from:", url)
 
-@app.post("/chat")
-async def chat_endpoint(request: ChatRequest):
-    try:
-        # 1. Generate embedding for the user query
-        query_embedding = embeddings_model.embed_query(request.query)
+    return text
 
-        # 2. Retrieve relevant chunks from Qdrant
-        search_result = qdrant_client.search(
-            collection_name=QDRANT_COLLECTION_NAME,
-            query_vector=query_embedding,
-            limit=3 # top_k=3 as per requirements
+
+# -------------------------------------
+# Step 3 — Chunk the text
+# -------------------------------------
+def chunk_text(text, max_chars=1200):
+    chunks = []
+    while len(text) > max_chars:
+        split_pos = text[:max_chars].rfind(". ")
+        if split_pos == -1:
+            split_pos = max_chars
+        chunks.append(text[:split_pos])
+        text = text[split_pos:]
+    chunks.append(text)
+    return chunks
+
+
+# -------------------------------------
+# Step 4 — Create embedding
+# -------------------------------------
+def embed(text):
+    response = cohere_client.embed(
+        model=EMBED_MODEL,
+        input_type="search_query",  # Use search_query for queries
+        texts=[text],
+    )
+    return response.embeddings[0]  # Return the first embedding
+
+
+# -------------------------------------
+# Step 5 — Store in Qdrant
+# -------------------------------------
+def create_collection():
+    print("\nCreating Qdrant collection...")
+    qdrant.recreate_collection(
+        collection_name=COLLECTION_NAME,
+        vectors_config=VectorParams(
+        size=1024,        # Cohere embed-english-v3.0 dimension
+        distance=Distance.COSINE
         )
-        
-        context_texts = [hit.payload["text"] for hit in search_result]
-        
-        # 3. Prepare prompt for LLM
-        prompt_template = """
-        You are a helpful assistant for a Docusaurus book. Answer the user's question based on the provided context only.when you fetch chunks, see it analyze and give the best for exlplaoning those content.
-        If the answer is not in the context, politely state that you don't have enough information.
-        but if qeustion is general and not complex so answer it and say that your assist for helping in book.but use some token and give them short answer.
+    )
 
-        Context:
-        {context}
+def save_chunk_to_qdrant(chunk, chunk_id, url):
+    vector = embed(chunk)
 
-        Question:
-        {question}
+    qdrant.upsert(
+        collection_name=COLLECTION_NAME,
+        points=[
+            PointStruct(
+                id=chunk_id,
+                vector=vector,
+                payload={
+                    "url": url,
+                    "text": chunk,
+                    "chunk_id": chunk_id
+                }
+            )
+        ]
+    )
 
-        Answer:
-        """
-        
-        prompt = PromptTemplate(
-            template=prompt_template,
-            input_variables=["context", "question"]
-        )
 
-        # 4. Generate response using LLM
-        # For simplicity, we'll join the context texts. In a more complex RAG,
-        # you might use a more sophisticated way to pass context to the LLM.
-        full_context = "\n\n".join(context_texts)
-        
-        # Langchain's load_qa_chain expects a list of Document objects, 
-        # but since we already have the texts, we can pass them directly to the prompt.
-        # Alternatively, we could convert context_texts into Document objects if needed for more complex chains.
-        
-        # Using a simpler invoke for direct prompt filling
-        formatted_prompt = prompt.format(context=full_context, question=request.query)
-        response = llm.invoke(formatted_prompt)
+# -------------------------------------
+# MAIN INGESTION PIPELINE
+# -------------------------------------
+def ingest_book():
+    urls = get_all_urls(SITEMAP_URL)
 
-        return {"response": response.content}
+    create_collection()
 
-    except Exception as e:
-        logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
-        logging.error(f'An error occurred: {e}', exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+    global_id = 1
 
-@app.get("/qdrant-status")
-async def get_qdrant_status():
-    try:
-        collection_info = qdrant_client.get_collection(QDRANT_COLLECTION_NAME)
-        return {
-            "collection_name": QDRANT_COLLECTION_NAME,
-            "status": "active",
-            "point_count": collection_info.points_count
-        }
-    except Exception as e:
-        # Log the exception for debugging
-        logging.error(f"Error checking Qdrant status: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Error checking Qdrant status: {e}")
+    for url in urls:
+        print("\nProcessing:", url)
+        text = extract_text_from_url(url)
+
+        if not text:
+            continue
+
+        chunks = chunk_text(text)
+
+        for ch in chunks:
+            save_chunk_to_qdrant(ch, global_id, url)
+            print(f"Saved chunk {global_id}")
+            global_id += 1
+
+    print("\n✔️ Ingestion completed!")
+    print("Total chunks stored:", global_id - 1)
+
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    ingest_book()
