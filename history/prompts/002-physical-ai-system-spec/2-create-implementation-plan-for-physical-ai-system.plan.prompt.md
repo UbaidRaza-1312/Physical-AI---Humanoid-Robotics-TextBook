@@ -32,17 +32,17 @@ tests:
 /sp.plan
 
 Title:
-Physical AI & Humanoid Robotics — Master Academic Build Plan + Module Chapters
+Physical AI & Humanoid Robotics — Master Academic Build Plan + Modules
 
 Primary Goal:
-A complete textbook + simulation robotics lab + humanoid systems hackathon, with academically structured chapters under defined modules.
+A complete textbook + simulation robotics lab + humanoid systems hackathon, with academically structured modules under defined modules.
 
 --------------------------------------------------
 PHASE 1 — FOUNDATION DESIGN (Week 1–3)
 --------------------------------------------------
 
 MODULE 1: INTRODUCTION TO PHYSICAL AI
-Chapters:
+Modules:
 1. Principles of Physical AI & Embodied Intelligence
 2. Perception-Action Coupling in Robotic Systems
 3. Cognitive Understanding Beyond Virtual AI Models
@@ -64,7 +64,7 @@ PHASE 2 — SIMULATION LAB CONSTRUCTION (Week 4–6)
 --------------------------------------------------
 
 MODULE 2: HUMANOID SYSTEM DESIGN & CONTROL
-Chapters:
+Modules:
 4. Kinematic and Dynamic Structuring of Humanoids
 5. Stability, Balance & Zero Moment Point
 6. Actuation, Torque & Joint Safety Limits
@@ -86,7 +86,7 @@ PHASE 3 — ADVANCED CONTROL & AUTONOMY (Week 7–9)
 --------------------------------------------------
 
 MODULE 3: BODY CONTROL & SENSOR FUSION
-Chapters:
+Modules:
 7. Sensor Fusion & IMU Interpretation
 8. Reactive vs Planned Motor Control Systems
 9. Autonomy Feedback Loop: Error Correction
@@ -108,17 +108,17 @@ PHASE 4 — TEXTBOOK PRODUCTION (Week 10–11)
 --------------------------------------------------
 
 MODULE 4: COMMUNICATION, DOCUMENTATION & HRI
-Chapters:
+Modules:
 10. Human-Robot Interaction Standards
 11. Safety Protocols for Embodied Robotics
 12. Ethical Deployment in Physical Environments
 
 Week 10:
-- Full chapter layout with objectives, diagrams, labs
+- Full module layout with objectives, diagrams, labs
 
 Week 11:
 - Textbook completion:
-  * 12 chapters
+  * 12 modules
   * diagrams
   * assessments
   * simulation labs
@@ -128,7 +128,7 @@ PHASE 5 — HACKATHON EXECUTION (Week 12)
 --------------------------------------------------
 
 MODULE 5: CAPSTONE & HUMANOID PERFORMANCE
-Chapters:
+Modules:
 13. Final Integration of Motion + Perception
 14. Humanoid Demonstration Standards
 15. Performance Rubrics in Physical AI Events

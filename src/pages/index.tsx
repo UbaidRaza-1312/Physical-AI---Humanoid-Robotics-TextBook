@@ -7,6 +7,7 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
+import ChatWidget from '../components/ChatWidget/index';
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -82,7 +83,7 @@ function Module({title, description, link, idx}: ModuleItem & {idx: number}) {
     <div> {/* Responsive columns for modules */}
       <Link to={link} className={clsx(styles.moduleCard, styles.moduleCardLink)}>
         <div className="text--center padding-horiz--md">
-          <Heading as="h3">Chapter {idx + 1}: {title}</Heading>
+          <Heading as="h3">Module {idx + 1}: {title}</Heading>
           <p>{description}</p>
         </div>
       </Link>
@@ -129,6 +130,7 @@ export default function Home(): ReactNode {
         <ModulesSection /> {/* New Modules Section */}
         <AboutSection /> {/* Moved About Section to the end of main */}
       </main>
+      <ChatWidget />
     </Layout>
   );
 }
