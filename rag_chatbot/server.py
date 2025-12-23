@@ -1,21 +1,22 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 from agent import run_agent_query
 import uvicorn
-from fastapi.middleware.cors import CORSMiddleware
-from openai import APITimeoutError
+import asyncio   
 
-#  uv run uvicorn server:app --host 127.0.0.1 --port 8001
+
+# uv run uvicorn server:app --host 127.0.0.1 --port 8001
+
 
 app = FastAPI()
 
-# Add CORS middleware to allow requests from your frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class QueryRequest(BaseModel):
@@ -30,11 +31,15 @@ async def chat(request: QueryRequest):
         agent_response = await run_agent_query(request.query)
         return QueryResponse(response=agent_response)
 
-    except APITimeoutError:
+    except asyncio.TimeoutError:
         return QueryResponse(
-            response="AI is slow right now. Please try again in a moment."
+            response="AI is slow right now. Please try again."
         )
 
+    except Exception as e:
+        return QueryResponse(
+            response=f"Server error: {str(e)}"
+        )
 
 @app.get("/")
 def read_root():
