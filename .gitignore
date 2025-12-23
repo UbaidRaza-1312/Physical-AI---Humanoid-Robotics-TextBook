@@ -41,3 +41,4 @@ venv/
 # Universal
 *.swp
 *.swo
+rag_chatbot/.env
